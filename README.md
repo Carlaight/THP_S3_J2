@@ -13,3 +13,5 @@
 ## Fonctionnement
 
 Lancer `ruby app.rb` dans le terminal
+
+N'oubliez pas d'ajouter votre "config.json" au à la racine du dossier.
