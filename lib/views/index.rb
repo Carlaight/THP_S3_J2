@@ -26,7 +26,7 @@ class Menu
     @@choice = gets.chomp.to_i
     
    mairie = Scrapper.new
-   done = Quit.new.quit
+   
    case
 
      when @@choice == 1
@@ -54,7 +54,8 @@ class Menu
       sleep(3)
       choice
      when @@choice == 4
-       done
+      done = Quit.new.quit
+      done
      when @@choice > 4 && @@choice < 1 #ne fonctionne pas
         puts "Il n'y a pas de porte secrète"
         @@choice = gets.chomp.to_i

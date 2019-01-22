@@ -46,8 +46,7 @@ class Scrapper
   end
 
   def save_as_spreadsheet
-    session = GoogleDrive::Session.from_config("EnMasse/config.json")
-    #https://docs.google.com/spreadsheets/d/1teaqlNAL829yV786mgZ1K6Fleu1eiDIolXTSIIT_d0o/edit#gid=0
+    session = GoogleDrive::Session.from_config("config.json")
     ws = session.spreadsheet_by_key("1teaqlNAL829yV786mgZ1K6Fleu1eiDIolXTSIIT_d0o").worksheets[0]
     ws[2,1] = "Nom ville"
     ws[2,2] = "Email"
