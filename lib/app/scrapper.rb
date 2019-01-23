@@ -2,7 +2,14 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 require 'csv'
-require 'google_drive'
+require     name_and_url = []
+
+    url_path.map do |value|
+      url_ville = value["href"]
+      url_ville[0] = ""
+      name_and_url << { "name" => value.text, "url" => "http://annuaire-des-mairies.com" + url_ville }
+    end
+'google_drive'
 
 class Scrapper
 
@@ -10,13 +17,6 @@ class Scrapper
     url = "http://annuaire-des-mairies.com/val-d-oise.html"
     doc = Nokogiri::HTML(open(url))
     url_path = doc.css("a[href].lientxt")
-    name_and_url = []
-
-    url_path.map do |value|
-      url_ville = value["href"]
-      url_ville[0] = ""
-      name_and_url << { "name" => value.text, "url" => "http://annuaire-des-mairies.com" + url_ville }
-    end
     name_and_url
   end
 
@@ -50,13 +50,15 @@ class Scrapper
     ws = session.spreadsheet_by_key("1teaqlNAL829yV786mgZ1K6Fleu1eiDIolXTSIIT_d0o").worksheets[0]
     ws[2,1] = "Nom ville"
     ws[2,2] = "Email"
-    @list.each do |k,v|
+    i = 3
+    @all.each do |k,v|
       ws[i,1] = k
       ws[i,2] = v
       i +=1
     end
-  ws.save
-end
+    ws.save
+    ws.relaod
+  end
 
   def save_as_csv
     File.open("db/emails.csv", "w+") do |f|

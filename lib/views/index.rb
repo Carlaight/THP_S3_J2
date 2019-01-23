@@ -28,7 +28,6 @@ class Menu
    mairie = Scrapper.new
    
    case
-
      when @@choice == 1
       sleep(1)
       puts "Work in progress..."
@@ -57,8 +56,8 @@ class Menu
       done = Quit.new.quit
       done
      when @@choice > 4 && @@choice < 1 #ne fonctionne pas
-        puts "Il n'y a pas de porte secrète"
-        @@choice = gets.chomp.to_i
+      puts "Il n'y a pas de porte secrète"
+      @@choice = gets.chomp.to_i
      end
   end
 end
